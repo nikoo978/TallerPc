@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "TallerPc",
+  "short_name": "TallerPc",
+  "description": "Órdenes, diagnósticos, presupuestos, reparaciones y seguimiento para servicio técnico de PC y notebooks.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101316",
+  "theme_color": "#101316",
+  "lang": "es-AR",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
