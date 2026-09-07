@@ -1,0 +1,94 @@
+name: Import ServiTaller into TallerPc
+
+on:
+  push:
+    paths:
+      - '.github/workflows/import-servitaller.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download current production runtime from Vercel
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://servitaller.vercel.app'
+          mkdir -p icons
+          files=(
+            index.html
+            styles.css
+            app.js
+            db.js
+            pdf-export.js
+            cloud.js
+            cloud-config.js
+            brand-pattern-v221.css
+            brand-pattern-v221.js
+            svg-sanitize-v221.js
+            manifest.webmanifest
+            tech-mark.svg
+            circuit-pattern-dark.svg
+            circuit-pattern-light.svg
+            circuit-pattern-print.svg
+            service-worker.js
+          )
+          for file in "${files[@]}"; do
+            echo "Downloading $file"
+            curl --fail --silent --show-error --location "$BASE/$file" -o "$file"
+          done
+          curl --fail --silent --show-error --location "$BASE/icons/icon.svg" -o icons/icon.svg
+
+      - name: Rename product to TallerPc without changing storage compatibility keys
+        shell: python
+        run: |
+          from pathlib import Path
+          for filename in ['index.html', 'app.js', 'manifest.webmanifest']:
+              p = Path(filename)
+              text = p.read_text(encoding='utf-8')
+              text = text.replace('ServiTaller', 'TallerPc')
+              p.write_text(text, encoding='utf-8')
+
+          p = Path('service-worker.js')
+          text = p.read_text(encoding='utf-8').replace("const CACHE = 'servitaller-v8';", "const CACHE = 'tallerpc-v1';")
+          p.write_text(text, encoding='utf-8')
+
+      - name: Add Docker deployment files
+        shell: bash
+        run: |
+          cat > Dockerfile <<'EOF'
+          FROM nginx:alpine
+          COPY . /usr/share/nginx/html/
+          EXPOSE 80
+          EOF
+
+          cat > .dockerignore <<'EOF'
+          .git
+          .github
+          .gitignore
+          README.md
+          EOF
+
+          cat > .gitignore <<'EOF'
+          .DS_Store
+          *.log
+          EOF
+
+      - name: Commit imported application
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/import-servitaller.yml
+          git config user.name 'Coffeetec Automator'
+          git config user.email 'nikoo978@users.noreply.github.com'
+          git add -A
+          git commit -m 'Import ServiTaller as TallerPc'
+          git push origin main
