@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#101316" />
+  <meta name="description" content="Taller técnico: órdenes, diagnósticos, presupuestos y gestión profesional de reparaciones de computadoras." />
+  <meta property="og:title" content="TallerPc" />
+  <meta property="og:description" content="PC · Notebooks · Diagnóstico · Presupuestos · Reparaciones" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:image" content="./icons/icon.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TallerPc" />
+  <meta name="twitter:description" content="PC · Notebooks · Diagnóstico · Presupuestos · Reparaciones" />
+  <meta name="twitter:image" content="./icons/icon.svg" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icons/icon.svg" />
+  <link rel="apple-touch-icon" href="./icons/icon.svg" />
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem('presupuesto-tecnico-2-theme');
+        document.documentElement.dataset.theme = ['light', 'dark'].includes(savedTheme) ? savedTheme : 'dark';
+      } catch (_) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./brand-pattern-v221.css" />
+  <title>TallerPc · Taller</title>
+</head>
+<body>
+  <div class="app-shell" id="app">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="brand-block">
+        <div class="brand-lockup sidebar-logo" role="img" aria-label="Servicio técnico"><img class="brand-lockup-mark" src="./tech-mark.svg" alt="" /><span class="brand-lockup-word">TALLER <span class="brand-lockup-thin">PC</span></span></div>
+        <div class="brand-copy"><strong id="sidebarBusiness" class="sr-only">SERVICIO TÉCNICO</strong><span id="sidebarTagline">PC · Notebooks · Reparaciones</span></div>
+      </div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="new" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10M9.5 20v-6h5v6"/></svg><span>Inicio</span><kbd>N</kbd></button>
+        <button class="nav-item" data-view="orders" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg><span>Órdenes guardadas</span></button>
+        <button class="nav-item" data-view="settings" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM4.9 7.5l1.5-2.6 2 .6a7.8 7.8 0 0 1 2-.9L11 2.5h3l.6 2.1a7.8 7.8 0 0 1 2 .9l2-.6 1.5 2.6-1.5 1.5c.2.7.4 1.4.4 2.1s-.2 1.4-.4 2.1l1.5 1.5-1.5 2.6-2-.6a7.8 7.8 0 0 1-2 .9l-.6 2.1h-3l-.6-2.1a7.8 7.8 0 0 1-2-.9l-2 .6-1.5-2.6 1.5-1.5A7.2 7.2 0 0 1 6 11.1c0-.7.2-1.4.4-2.1z"/></svg><span>Ajustes</span></button>
+        <button class="nav-item" data-view="manual" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3zM8 8h7M8 12h7M8 16h4M18 7.5h1.5V20H18"/></svg><span>Manual de uso</span></button>
+        <button class="nav-item" data-view="versions" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2M16 3h5v5M21 3l-5 5"/></svg><span>Detalles de versión</span></button>
+      </nav>
+      <div class="sidebar-foot"><div><span id="connectionDot" class="status-dot"></span><span id="offlineStatus">Listo para trabajar</span></div><small id="cloudStatusDetail">Datos protegidos en este dispositivo</small><button id="cloudAccountShortcut" class="cloud-account-shortcut" type="button">Conectar nube</button></div>
+    </aside>
+
+    <main class="main-content">
+      <div class="utility-bar" aria-label="Preferencias de apariencia">
+        <button class="theme-icon-toggle theme-toggle-desktop" type="button" data-theme-toggle aria-pressed="false" aria-label="Cambiar tema" title="Cambiar tema">
+          <span data-theme-icon aria-hidden="true">☀</span>
+        </button>
+      </div>
+      <header class="mobile-header">
+        <button id="mobileMenuBtn" class="icon-btn" type="button" aria-label="Abrir menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <div class="mobile-brand">
+          <span class="brand-lockup mobile-logo" role="img" aria-label="Servicio técnico"><img class="brand-lockup-mark" src="./tech-mark.svg" alt="" /><span class="brand-lockup-word">TALLER <span class="brand-lockup-thin">PC</span></span></span>
+          <strong id="mobileBusiness" class="sr-only">SERVICIO TÉCNICO</strong>
+        </div>
+        <div class="mobile-header-actions">
+          <button class="theme-icon-toggle theme-toggle-mobile" type="button" data-theme-toggle aria-pressed="false" aria-label="Cambiar tema" title="Cambiar tema"><span data-theme-icon aria-hidden="true">☀</span></button>
+          <button class="icon-btn" id="mobileNewBtn" type="button" aria-label="Nueva orden">+</button>
+        </div>
+      </header>
+
+      <section id="view-new" class="view active-view">
+        <header class="editor-topbar">
+          <div class="order-identity"><span class="eyebrow">ORDEN DE SERVICIO / PRESUPUESTO</span><div class="order-title-row"><h1 id="editorTitle">Orden #000001</h1><span id="saveState" class="save-state">Sin guardar</span><label class="storage-scope"><span>Guardar en</span><select id="orderStorageScope" aria-label="Destino de almacenamiento"><option value="local">Este dispositivo</option><option value="cloud" disabled>Nube</option></select></label></div></div>
+          <div class="top-actions"><button id="newBudgetBtn" class="btn btn-ghost" type="button"><span>＋</span>Nueva</button><button id="saveBudgetBtn" class="btn btn-success" type="button">Guardar</button><button id="previewBudgetBtn" class="btn btn-ghost" type="button">Vista previa</button><button id="downloadPdfBtn" class="btn btn-download" type="button">↓ Descargar PDF</button></div>
+        </header>
+
+        <form id="budgetForm" class="workbench" autocomplete="off">
+          <section class="work-main">
+            <div class="panel-grid two-panels">
+              <article class="panel" id="clientPanel">
+                <div class="panel-head"><div><span class="panel-icon">01</span><h2>Cliente</h2></div><button class="mini-link" type="button" data-toggle="clientExtra">Más datos</button></div>
+                <div class="field-grid cols-3">
+                  <label class="field span-2"><span>Nombre / razón social</span><input class="input" name="clientName" list="clientNames" placeholder="Persona, comercio o empresa" autocomplete="off" /></label>
+                  <label class="field"><span>Teléfono</span><input class="input" name="clientPhone" inputmode="tel" autocomplete="off" /></label>
+                </div>
+                <div id="clientExtra" class="collapsible hidden"><div class="field-grid cols-3 top-gap">
+                  <label class="field"><span>DNI / CUIT</span><input class="input" name="clientTaxId" /></label>
+                  <label class="field"><span>Email</span><input class="input" name="clientEmail" type="email" /></label>
+                  <label class="field"><span>Tipo de cliente</span><select class="input" name="clientType"><option>Particular</option><option>Comercio</option><option>Empresa</option><option>Consorcio</option><option>Administración</option><option>Otro</option></select></label>
+                </div></div>
+              </article>
+
+              <article class="panel" id="equipmentPanel">
+                <div class="panel-head"><div><span class="panel-icon">02</span><h2>Equipo</h2></div><button class="mini-link" type="button" data-toggle="equipmentExtra">Datos de ingreso</button></div>
+                <div class="device-picker" role="group" aria-label="Tipo de equipo">
+                  <button class="device-btn active" type="button" data-device="Notebook"><svg viewBox="0 0 24 24"><path d="M5 5h14v10H5zM3 18h18"/></svg><span>Notebook</span></button>
+                  <button class="device-btn" type="button" data-device="PC"><svg viewBox="0 0 24 24"><path d="M4 4h16v11H4zM9 20h6M12 15v5"/></svg><span>PC</span></button>
+                  <button class="device-btn" type="button" data-device="All in One"><svg viewBox="0 0 24 24"><path d="M3 4h18v13H3zM8 21h8M12 17v4"/></svg><span>All in One</span></button>
+                  <button class="device-btn" type="button" data-device="Monitor"><svg viewBox="0 0 24 24"><path d="M3 4h18v13H3zM9 21h6M12 17v4"/></svg><span>Monitor</span></button>
+                  <button class="device-btn" type="button" data-device="Otro"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg><span>Otro</span></button>
+                </div>
+                <input type="hidden" name="equipmentType" value="Notebook" />
+                <div class="field-grid cols-3 top-gap">
+                  <label class="field"><span>Marca</span><input class="input" name="brand" list="brandList" placeholder="Ej. Lenovo" /></label>
+                  <label class="field"><span>Modelo</span><input class="input" name="model" list="modelList" placeholder="Ej. IdeaPad 3" /></label>
+                  <label class="field"><span>N.º de serie</span><input class="input" name="serial" placeholder="S/N o identificación" /></label>
+                  <label class="field span-2"><span>Accesorios entregados</span><input class="input" name="accessories" placeholder="Cargador, funda, adaptadores..." /></label>
+                  <label class="field"><span>Fecha de ingreso</span><input class="input" name="date" type="date" /></label>
+                  <label class="field span-2"><span>Estado exterior</span><input class="input" name="exterior" placeholder="Golpes, rayas, faltantes o uso normal" /></label>
+                  <label class="field"><span>Clave / PIN</span><input class="input" name="password" placeholder="Opcional" /></label>
+                </div>
+                <div id="equipmentExtra" class="collapsible hidden"><div class="field-grid cols-3 top-gap">
+                  <label class="field"><span>Procesador</span><input class="input" name="processor" placeholder="Ej. Ryzen 5 5500U" /></label>
+                  <label class="field"><span>Memoria RAM</span><input class="input" name="memory" placeholder="Ej. 8 GB DDR4" /></label>
+                  <label class="field"><span>Almacenamiento</span><input class="input" name="storage" placeholder="Ej. SSD 256 GB" /></label>
+                  <label class="field"><span>Sistema operativo</span><input class="input" name="operatingSystem" placeholder="Ej. Windows 11" /></label>
+                  <label class="field"><span>Cargador / fuente</span><input class="input" name="charger" placeholder="Original, genérico, no entrega" /></label>
+                  <label class="field"><span>Copia de seguridad</span><select class="input" name="backupRequested"><option>No solicitado</option><option>Solicitado</option><option>Realizado</option><option>No fue posible</option><option>No corresponde</option></select></label>
+                </div></div>
+              </article>
+            </div>
+
+            <article class="panel">
+              <div class="panel-head service-head"><div><span class="panel-icon">03</span><h2>Diagnóstico y reparación</h2></div><div class="quick-actions"><span class="quick-label">Plantillas rápidas</span><button id="saveAsQuickTemplateBtn" class="mini-link" type="button">＋ Guardar como plantilla</button></div></div>
+              <div id="quickServices" class="quick-services"></div>
+              <div class="field-grid cols-4 top-gap service-meta">
+                <label class="field"><span>Tipo de servicio</span><select class="input" name="serviceType"><option>Diagnóstico</option><option>Reparación</option><option>Mantenimiento</option><option>Software</option><option>Instalación / actualización</option><option>Recuperación de datos</option><option>Presupuesto</option><option>Otro</option></select></label>
+                <label class="field"><span>Prioridad</span><select class="input" name="priority"><option>Normal</option><option>Alta</option><option>Urgente</option></select></label>
+                <label class="field span-2"><span>Técnico asignado</span><select class="input" name="assignedTechnician" id="assignedTechnician"><option value="">Sin asignar</option></select></label>
+              </div>
+              <div class="field-grid cols-2 top-gap">
+                <label class="field"><span>Diagnóstico técnico</span><textarea class="input textarea" name="diagnosis" rows="5" placeholder="Pruebas realizadas, componentes afectados y conclusión técnica..."></textarea></label>
+                <label class="field"><span>Trabajo / resolución propuesta</span><textarea class="input textarea" name="requiredWork" rows="5" placeholder="Reparación, reemplazo, armado, software y pruebas..."></textarea></label>
+              </div>
+              <div class="field-grid cols-2 top-gap compact-gap">
+                <label class="field"><span>Falla informada por el cliente</span><input class="input" name="issue" placeholder="Ej. No enciende / pantalla rota / equipo lento" /></label>
+                <label class="field"><span>Resultado / conclusión</span><input class="input" name="result" placeholder="Ej. Reparado y probado / irreparable / pendiente de repuesto" /></label>
+              </div>
+            </article>
+
+            <article class="panel budget-panel">
+              <div class="panel-head"><div><span class="panel-icon">04</span><h2>Repuestos, servicios y mano de obra</h2></div><button id="addItemBtn" class="btn btn-small btn-ghost" type="button">＋ Ítem</button></div>
+              <div id="itemsContainer" class="items-list"></div>
+              <div class="budget-subtotal-row"><span>Subtotal</span><strong id="itemsSubtotal">$ 0</strong></div>
+            </article>
+
+            <article class="panel notes-panel"><div class="panel-head"><div><span class="panel-icon">05</span><h2>Observaciones</h2></div></div><textarea class="input textarea short" name="notes" rows="3" placeholder="Aclaraciones, disponibilidad de repuestos, estado del equipo o condiciones para el cliente..."></textarea></article>
+          </section>
+
+          <aside class="work-rail">
+            <article class="panel rail-panel sticky-card"><div class="panel-head"><div><span class="panel-icon">●</span><h2>Estado de la orden</h2></div></div><div id="statusPicker" class="status-picker"></div><input type="hidden" name="status" value="Recibido" /></article>
+            <article class="panel rail-panel">
+              <div class="panel-head"><div><span class="panel-icon">$</span><h2>Cobros</h2></div></div>
+              <div class="financial-fields">
+                <label class="field"><span>Recargo</span><div class="money-input"><button class="financial-unit-toggle" type="button" data-financial-toggle="surcharge" aria-label="Cambiar Recargo entre pesos y porcentaje" aria-pressed="false">$</button><input class="input" name="surcharge" type="number" min="0" step="1" value="0" /><input name="surchargeMode" type="hidden" value="amount" /></div></label>
+                <label class="field"><span>Descuento</span><div class="money-input"><button class="financial-unit-toggle" type="button" data-financial-toggle="discount" aria-label="Cambiar Descuento entre pesos y porcentaje" aria-pressed="false">$</button><input class="input" name="discount" type="number" min="0" step="1" value="0" /><input name="discountMode" type="hidden" value="amount" /></div></label>
+                <label class="field"><span>Cobro / anticipo</span><div class="money-input"><button class="financial-unit-toggle" type="button" data-financial-toggle="deposit" aria-label="Cambiar Cobro o anticipo entre pesos y porcentaje" aria-pressed="false">$</button><input class="input" name="deposit" type="number" min="0" step="1" value="0" /><input name="depositMode" type="hidden" value="amount" /></div></label>
+                <label class="field"><span>Forma de pago</span><select class="input" name="paymentMethod"><option>Efectivo</option><option>Transferencia</option><option>Débito</option><option>Crédito</option><option>Mercado Pago</option><option>Cheque</option><option>Cuenta corriente</option><option>Otro</option></select></label>
+              </div>
+              <div class="finance-summary"><div><span>Subtotal</span><strong id="quoteTotal">$ 0</strong></div><div><span>Total</span><strong id="serviceTotal">$ 0</strong></div><div class="balance"><span>Saldo a cobrar</span><strong id="balanceTotal">$ 0</strong></div></div>
+            </article>
+            <article class="panel rail-panel">
+              <div class="panel-head"><div><span class="panel-icon">▤</span><h2>Documento</h2></div></div>
+              <div class="template-picker" id="templatePicker"><button class="template-option active" type="button" data-template="classic"><span class="template-thumb classic-thumb"></span><span><strong>Presupuesto</strong><small>Formal A4 para enviar</small></span></button><button class="template-option" type="button" data-template="workshop"><span class="template-thumb workshop-thumb"></span><span><strong>Orden de servicio</strong><small>Ingreso, diagnóstico y reparación</small></span></button></div>
+              <input type="hidden" name="template" value="classic" />
+              <div id="legalReadiness" class="legal-readiness" role="status" aria-live="polite"><span></span><div><strong>Revisión formal</strong><small>Completá los datos para emitir un documento formal.</small></div></div>
+              <div class="field-grid cols-2 top-gap compact-gap">
+                <label class="field span-2"><span>N.º de orden / presupuesto</span><input id="budgetNumberInput" class="input" name="budgetNumber" type="number" min="1" step="1" inputmode="numeric" /></label>
+                <label class="field"><span>Validez</span><div class="suffix-input"><input class="input" name="validityDays" type="number" min="1"/><span>días</span></div></label>
+                <label class="field"><span>Garantía</span><div class="suffix-input"><input class="input" name="warrantyDays" type="number" min="0"/><span>días</span></div></label>
+                <label class="field"><span>Plazo estimado</span><div class="suffix-input"><input class="input" name="executionDays" type="number" min="1"/><span>días</span></div></label>
+                <label class="field"><span>Finalización prevista</span><input class="input" name="deliveryDate" type="date" /></label>
+              </div>
+              <button id="railPreviewBtn" class="btn btn-ghost full-btn top-gap" type="button">Vista previa / imprimir</button>
+              <button id="railDownloadPdfBtn" class="btn btn-download full-btn top-gap pdf-download-button" type="button">↓ Descargar PDF A4</button>
+            </article>
+          </aside>
+        </form>
+        <div class="mobile-actionbar"><div><small>Saldo</small><strong id="mobileBalance">$ 0</strong></div><button id="mobileSaveBtn" class="btn btn-success" type="button">Guardar</button><button id="mobilePreviewBtn" class="btn btn-ghost" type="button">Vista</button><button id="mobileDownloadPdfBtn" class="btn btn-download pdf-download-button" type="button">↓ PDF</button></div>
+      </section>
+
+      <section id="view-orders" class="view">
+        <header class="page-head"><div><span class="eyebrow">HISTORIAL</span><h1>Órdenes guardadas</h1></div><button id="ordersNewBtn" class="btn btn-success" type="button">＋ Nueva orden</button></header>
+        <div id="orderSourceTabs" class="order-source-tabs" role="group" aria-label="Origen de las órdenes"><button type="button" class="active" data-order-source="local" aria-pressed="true"><span>Este dispositivo</span><small>Órdenes locales</small></button><button type="button" data-order-source="cloud" aria-pressed="false" disabled><span>Nube</span><small>Cuenta conectada</small></button></div>
+        <div class="orders-toolbar"><label class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="budgetSearch" type="search" placeholder="Cliente, número, marca, modelo, serie o técnico" /></label><select id="statusFilter" class="input compact-select"><option value="">Todos los estados</option></select></div>
+        <div class="summary-cards"><div><span>Órdenes</span><strong id="statOrders">0</strong></div><div><span>Pendiente de cobro</span><strong id="statBalance">$ 0</strong></div><div><span>En reparación</span><strong id="statRepair">0</strong></div></div>
+        <div class="orders-table-card"><div class="table-wrap"><table class="orders-table"><thead><tr><th>N.º</th><th>Cliente</th><th>Equipo</th><th>Estado</th><th>Técnico</th><th class="num">Total</th><th></th></tr></thead><tbody id="budgetsTableBody"></tbody></table></div><div id="emptyBudgets" class="empty-state hidden"><strong>No hay órdenes para mostrar</strong><span>Creá la primera orden y empezá a organizar el taller.</span><button class="btn btn-success" id="emptyNewBtn" type="button">Crear orden</button></div></div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <header class="page-head"><div><span class="eyebrow">CONFIGURACIÓN</span><h1>Ajustes del taller</h1></div><button id="saveSettingsBtn" class="btn btn-success" type="button">Guardar cambios</button></header>
+        <form id="settingsForm" class="settings-layout">
+          <section class="settings-main">
+            <article class="panel settings-panel">
+              <div class="panel-head"><div><span class="panel-icon">01</span><h2>Identidad y membrete</h2></div></div>
+              <div class="logo-config"><div id="logoPreview" class="logo-preview"><span>LOGO</span></div><div><label class="btn btn-ghost file-btn">Cargar logo<input id="logoInput" type="file" accept="image/png,image/jpeg,image/webp" hidden /></label><button id="removeLogoBtn" class="mini-link danger hidden" type="button">Quitar</button></div></div>
+              <div class="field-grid cols-2 top-gap">
+                <label class="field"><span>Nombre comercial</span><input class="input" name="businessName" /></label><label class="field"><span>Razón social / titular</span><input class="input" name="legalName" placeholder="Nombre legal del prestador" /></label>
+                <label class="field"><span>CUIT / identificación tributaria</span><input class="input" name="cuit" /></label><label class="field"><span>Condición fiscal</span><input class="input" name="taxCondition" placeholder="Ej. Responsable inscripto / monotributo" /></label>
+                <label class="field span-2"><span>Descripción</span><input class="input" name="tagline" /></label><label class="field span-2"><span>Domicilio comercial / legal</span><input class="input" name="address" /></label>
+                <label class="field"><span>Teléfono</span><input class="input" name="phone" /></label><label class="field"><span>Email</span><input class="input" name="email" type="email" /></label>
+                <label class="field"><span>Localidad / zona</span><input class="input" name="serviceArea" placeholder="Ciudad o zona de atención" /></label><label class="field"><span>Provincia / jurisdicción</span><input class="input" name="jurisdiction" placeholder="Ej. Provincia de Buenos Aires" /></label>
+                <label class="field"><span>Inscripción previsional / régimen</span><input class="input" name="socialSecurityRegistration" placeholder="Si corresponde" /></label><label class="field"><span>Registro / matrícula profesional</span><input class="input" name="licenseNumber" placeholder="Si corresponde" /></label>
+                <label class="field span-2"><span>Contacto para privacidad / datos personales</span><input class="input" name="privacyContact" placeholder="Email o medio para consultas de datos" /></label>
+              </div>
+            </article>
+            <article class="panel settings-panel appearance-panel">
+              <div class="panel-head"><div><span class="panel-icon">◈</span><h2>Apariencia y personalización</h2></div></div>
+              <p class="settings-help">Combiná color y un recurso gráfico de identidad. Los patrones disponibles corresponden a lenguajes habituales de marca —rayas, retículas, puntos, geometría, mallas y contornos— y mantienen contraste y legibilidad.</p>
+              <div class="appearance-group"><strong>Paleta de color · 10 opciones</strong><div id="palettePicker" class="palette-picker" role="radiogroup" aria-label="Paleta de color"></div><input type="hidden" name="accentPalette" value="blue" /></div>
+              <div class="appearance-group"><strong>Patrón visual</strong><div id="patternPicker" class="pattern-picker" role="radiogroup" aria-label="Patrón visual"></div><input type="hidden" name="visualPattern" value="pinstripe" /></div>
+              <div class="appearance-controls">
+                <label class="field"><span>Intensidad del patrón</span><div class="range-setting"><input id="patternIntensity" name="patternIntensity" type="range" min="0" max="100" step="5" value="28" /><output id="patternIntensityValue">28%</output></div></label>
+                <label class="toggle-setting"><input id="documentPatternToggle" type="checkbox" checked /><span>Aplicar patrón también a encabezados de Presupuesto y Orden de servicio</span></label>
+              </div>
+              <div class="appearance-live-preview" aria-label="Vista previa de apariencia"><span>VISTA PREVIA</span><strong>Texto siempre legible</strong><small>El patrón queda detrás de superficies sólidas; nunca compite con la información.</small></div>
+            </article>
+            <article class="panel settings-panel technicians-panel">
+              <div class="panel-head"><div><span class="panel-icon">02</span><h2>Equipo de trabajo</h2></div><button id="addTechnicianBtn" class="btn btn-small btn-ghost" type="button">＋ Agregar técnico</button></div>
+              <p class="settings-help">Agregá todos los técnicos que necesites. Luego podrás asignarlos desde cada orden.</p>
+              <div id="techniciansList" class="technicians-list"></div>
+            </article>
+            <article class="panel settings-panel">
+              <div class="panel-head"><div><span class="panel-icon">03</span><h2>Valores predeterminados</h2></div></div>
+              <div class="field-grid cols-4"><label class="field"><span>Próximo número automático</span><input class="input" name="nextNumber" type="number" min="1" step="1" inputmode="numeric" /></label><label class="field"><span>Garantía</span><div class="suffix-input"><input class="input" name="warrantyDays" type="number" min="0"/><span>días</span></div></label><label class="field"><span>Validez</span><div class="suffix-input"><input class="input" name="validityDays" type="number" min="1"/><span>días</span></div></label><label class="field"><span>Plazo</span><div class="suffix-input"><input class="input" name="executionDays" type="number" min="1"/><span>días</span></div></label></div>
+              <p class="settings-help numbering-help">Podés comenzar la secuencia en cualquier valor, por ejemplo 800900. Cada nuevo trabajo sumará uno automáticamente.</p>
+              <div class="settings-template-row top-gap"><span>Diseño predeterminado</span><div class="mini-template-toggle" id="defaultTemplatePicker"><button type="button" data-template="classic">Presupuesto</button><button type="button" data-template="workshop">Orden de servicio</button></div><input type="hidden" name="defaultTemplate" value="classic" /></div>
+            </article>
+            <article class="panel settings-panel">
+              <div class="panel-head"><div><span class="panel-icon">04</span><h2>Plantillas rápidas personalizadas</h2></div><button id="newQuickTemplateBtn" class="btn btn-small btn-ghost" type="button">＋ Nueva plantilla</button></div>
+              <p class="settings-help">Creá diagnósticos y reparaciones reutilizables con textos e ítems propios. Podés aplicarlos desde cualquier orden.</p>
+              <div id="customTemplatesList" class="custom-templates-list"></div>
+            </article>
+            <article class="panel settings-panel"><div class="panel-head"><div><span class="panel-icon">05</span><h2>Condiciones del servicio</h2></div></div><textarea class="input textarea" name="terms" rows="8"></textarea></article>
+          </section>
+          <aside class="settings-rail">
+            <article class="panel settings-panel cloud-panel">
+              <div class="panel-head"><div><span class="panel-icon">☁</span><h2>Cuenta y sincronización</h2></div></div>
+              <div class="cloud-state"><span id="cloudStateDot" class="status-dot cloud-dot"></span><div><strong id="cloudStateTitle">Sólo en este dispositivo</strong><small id="cloudStateSummary">Conectá una cuenta para consultar los presupuestos desde cualquier equipo.</small></div></div>
+              <button id="cloudAuthBtn" class="btn btn-primary full-btn" type="button">Ingresar / crear cuenta</button>
+              <button id="cloudSyncBtn" class="btn btn-ghost full-btn hidden" type="button">Sincronizar ahora</button>
+              <button id="cloudSwitchAccountBtn" class="btn btn-ghost full-btn hidden" type="button">Cambiar cuenta</button>
+              <button id="cloudSignOutBtn" class="mini-link danger hidden" type="button">Cerrar sesión</button>
+            </article>
+            <article class="panel settings-panel"><div class="panel-head"><div><span class="panel-icon">↕</span><h2>Copia de seguridad</h2></div></div><p class="muted-copy">Guardá periódicamente una copia de ajustes, órdenes, plantillas y logo.</p><button id="exportBackupBtn" class="btn btn-ghost full-btn" type="button">Exportar backup</button><label class="btn btn-ghost full-btn file-btn top-gap">Importar backup<input id="importBackupInput" type="file" accept="application/json,.json" hidden /></label></article>
+            <article class="panel settings-panel app-info"><div><span class="status-dot"></span><strong>Taller · Gestión profesional</strong></div><small>Funciona sin conexión después de la primera carga.</small><small>Los datos locales y los datos cloud se mantienen en espacios separados.</small><button id="openManualBtn" class="btn btn-ghost full-btn" type="button">Abrir manual de uso</button><button id="openVersionsBtn" class="btn btn-ghost full-btn" type="button">Detalles de versión</button><button id="installAppBtn" class="btn btn-primary full-btn hidden" type="button">Instalar TallerPc</button><small class="app-version">V.2.2.1</small></article>
+          </aside>
+        </form>
+      </section>
+
+      <section id="view-manual" class="view">
+        <header class="page-head manual-page-head"><div><span class="eyebrow">AYUDA INTEGRADA</span><h1>Manual de uso del taller</h1><p>Guía para recibir equipos, diagnosticar, presupuestar, sincronizar y emitir documentos.</p></div><button id="manualHomeBtn" class="btn btn-ghost" type="button">← Volver al inicio</button></header>
+        <div class="manual-layout">
+          <aside class="panel manual-index"><strong>Contenido</strong><nav><a href="#manual-start">Primeros pasos</a><a href="#manual-order">Orden y equipo</a><a href="#manual-diagnosis">Diagnóstico</a><a href="#manual-finance">Presupuesto y cobros</a><a href="#manual-pdf">Presupuesto vs. Orden</a><a href="#manual-legal">Legalidad Argentina</a><a href="#manual-cloud">Nube y backup</a></nav></aside>
+          <div class="manual-content">
+            <article id="manual-start" class="panel manual-hero"><span class="manual-kicker">FLUJO RECOMENDADO</span><h2>De la recepción a la entrega</h2><ol class="manual-steps"><li><span>1</span><div><strong>Identificá cliente y equipo</strong><p>Cargá nombre, teléfono, tipo de equipo, marca, modelo, serie, accesorios y estado exterior.</p></div></li><li><span>2</span><div><strong>Documentá la falla</strong><p>Registrá lo que informa el cliente y luego completá diagnóstico, resultado y trabajo recomendado.</p></div></li><li><span>3</span><div><strong>Cargá repuestos y mano de obra</strong><p>Agregá cantidad, detalle, condición, garantía y precio. El total se calcula automáticamente.</p></div></li><li><span>4</span><div><strong>Guardá y emití</strong><p>Elegí Presupuesto u Orden de servicio, guardá la orden y descargá el PDF A4.</p></div></li></ol><p class="manual-note"><strong>Consejo:</strong> las plantillas rápidas reducen escritura repetitiva. Siempre revisá el texto antes de entregarlo al cliente.</p></article>
+            <details id="manual-order" class="panel manual-section"><summary><span>01</span><div><strong>Cliente y equipo</strong><small>Ingreso, identificación y estado físico</small></div></summary><div class="manual-section-body"><h3>Datos principales</h3><p>Nombre y teléfono son los datos mínimos recomendados. En “Más datos” podés agregar DNI/CUIT, email y tipo de cliente.</p><h3>Equipo</h3><p>Seleccioná Notebook, PC, All in One, Monitor u Otro. Completá marca, modelo, número de serie, accesorios, estado exterior y clave/PIN cuando corresponda. “Datos de ingreso” agrega procesador, RAM, almacenamiento, sistema, cargador/fuente y estado del backup.</p></div></details>
+            <details id="manual-diagnosis" class="panel manual-section"><summary><span>02</span><div><strong>Diagnóstico y reparación</strong><small>Plantillas, técnicos y conclusión</small></div></summary><div class="manual-section-body"><h3>Plantillas rápidas</h3><p>Aplican textos e ítems predeterminados. Incluyen “Daño por rayo”, “No enciende / placa”, “Pantalla”, “SSD + sistema”, “Sistema operativo”, “Mantenimiento”, “Batería” y “Recuperación de datos”. Todo queda editable.</p><h3>Plantillas propias</h3><p>Usá “Guardar como plantilla” desde una orden o crealas desde Ajustes. Se sincronizan con la cuenta del taller.</p><h3>Diagnóstico responsable</h3><p>Diferenciá siempre lo informado por el cliente de lo observado por el técnico. En casos de sobretensión o tormenta, la plantilla usa lenguaje compatible con diagnóstico técnico y no atribuye causalidad pericial automática.</p></div></details>
+            <details id="manual-finance" class="panel manual-section"><summary><span>03</span><div><strong>Presupuesto y cobros</strong><small>Ítems, porcentajes, anticipo y saldo</small></div></summary><div class="manual-section-body"><p>Los ítems admiten repuestos, servicios y mano de obra. Recargo, descuento y cobro/anticipo pueden expresarse en pesos o porcentaje usando el selector $ / %. El saldo se recalcula automáticamente y nunca queda negativo.</p><p>El número de orden es editable y debe ser único. El valor “Próximo número automático” define el inicio de la secuencia para las órdenes nuevas.</p></div></details>
+            <details id="manual-pdf" class="panel manual-section"><summary><span>04</span><div><strong>Cuándo usar Presupuesto y cuándo Orden de servicio</strong><small>Dos documentos con finalidades distintas</small></div></summary><div class="manual-section-body"><h3>Orden de servicio: usar al recibir el equipo</h3><p>La <b>Orden de servicio</b> funciona como constancia de recepción y trazabilidad del equipo. Usala cuando el cliente deja una PC, notebook, monitor u otro equipo para revisión. Debe dejar asentados identificación del prestador y del cliente, equipo, número de serie, accesorios entregados, estado exterior, falla informada, fecha de ingreso, técnico, prioridad y autorización para diagnosticar. Para mantenerla como comprobante A4 operativo de una sola página, muestra sólo una referencia económica; el detalle de repuestos, mano de obra, precios y aceptación corresponde al <b>Presupuesto</b>. La orden <b>no equivale por sí sola a aceptar una reparación ni costos que todavía no fueron presupuestados</b>.</p><h3>Presupuesto: usar antes de ejecutar trabajos con precio y alcance definidos</h3><p>El <b>Presupuesto</b> se emite cuando ya existe información suficiente para describir el trabajo, materiales/repuestos, precios, mano de obra, plazo de ejecución, garantía y plazo de aceptación. En reparaciones a consumidores, debe entregarse antes de realizar trabajos presupuestables y cualquier costo adicional no incluido debe comunicarse previamente. La aceptación del cliente autoriza el alcance expresamente detallado.</p><h3>Flujo recomendado</h3><p><b>1.</b> Orden de servicio al ingreso → <b>2.</b> diagnóstico → <b>3.</b> presupuesto → <b>4.</b> aceptación → <b>5.</b> reparación → <b>6.</b> entrega y constancia de garantía. Si el trabajo y el precio ya se conocen desde el ingreso, ambos documentos pueden emitirse el mismo día.</p><h3>PDF directo</h3><p>“Descargar PDF” genera un archivo A4. La vista previa tiene zoom, ajuste automático, pellizco y trackpad; ese zoom no altera el tamaño real del documento.</p></div></details>
+            <details id="manual-legal" class="panel manual-section"><summary><span>05</span><div><strong>Legalidad y formalidad en Argentina</strong><small>Defensa del consumidor, garantías y datos personales</small></div></summary><div class="manual-section-body"><h3>Presupuesto de reparación</h3><p>La configuración está preparada para cubrir el contenido mínimo del art. 21 de la Ley 24.240: identificación y domicilio del prestador, trabajo a realizar, materiales, precios y mano de obra, plazo de ejecución, garantía, plazo de aceptación e identificación tributaria/previsional. Completá los datos reales del taller en Ajustes.</p><h3>Costos no previstos</h3><p>Las tareas, materiales o costos adicionales que aparezcan durante la reparación deben comunicarse al consumidor antes de realizarlos, salvo la excepción legal aplicable cuando interrumpir el servicio afectaría su calidad o dañaría la cosa.</p><h3>Garantía del servicio</h3><p>La app documenta alcance, duración, momento de inicio y responsable de la garantía. Además, la Ley 24.240 establece un régimen específico para deficiencias del servicio dentro de los 30 días siguientes a su conclusión, salvo previsión expresa y válida por escrito.</p><h3>Información y cláusulas</h3><p>La información debe ser cierta, clara, detallada y comprensible. No uses textos que eliminen derechos legales, trasladen al consumidor riesgos propios del prestador o pretendan eximir responsabilidad de manera general, porque las cláusulas abusivas pueden ser ineficaces.</p><h3>Datos personales y claves</h3><p>Nombre, teléfono, email y otros datos se tratan para gestionar la relación de servicio. Las claves/PIN solo deben registrarse cuando sean realmente necesarias, mantenerse confidenciales y limitarse al fin técnico. TallerPc evita imprimir la clave concreta en documentos entregables y no la envía a la nube.</p><h3>Factura / recibo fiscal</h3><p>El Presupuesto y la Orden de servicio documentan la relación técnica y comercial, pero <b>no reemplazan la factura, recibo o comprobante fiscal</b> que corresponda. Al cobrar una prestación o una operación alcanzada, el taller debe emitir el comprobante autorizado por ARCA según su condición fiscal y la del receptor.</p><p class="manual-note"><strong>Alcance:</strong> esta app implementa una base nacional de formalidad y consumo. Requisitos tributarios, provinciales, municipales, profesionales o sectoriales pueden variar según domicilio, actividad y condición fiscal del taller; deben completarse y verificarse para cada establecimiento.</p></div></details>
+            <details id="manual-cloud" class="panel manual-section"><summary><span>06</span><div><strong>Nube, datos locales y backup</strong><small>Dos espacios separados, sin mezclar órdenes</small></div></summary><div class="manual-section-body"><h3>Órdenes locales</h3><p>Las órdenes guardadas en “Este dispositivo” permanecen en IndexedDB y no se suben automáticamente a ninguna cuenta. Son independientes de la nube.</p><h3>Órdenes de nube</h3><p>Al iniciar sesión se habilita un espacio separado “Nube”. Las órdenes descargadas de esa cuenta se conservan en un caché independiente únicamente mientras la sesión esté disponible. Al cerrar sesión o cambiar de cuenta, ese caché y la información sincronizada se eliminan de este dispositivo.</p><h3>Backup</h3><p>El backup manual corresponde a los datos locales del dispositivo. Las órdenes cloud deben administrarse desde su cuenta para evitar mezclar propietarios o generar duplicados.</p><div class="manual-troubleshooting"><div><strong>No veo una orden cloud</strong><p>Comprobá que estás en la cuenta correcta, abrí Órdenes guardadas → Nube y ejecutá “Sincronizar ahora”.</p></div><div><strong>La PWA parece desactualizada</strong><p>Abrila con conexión, cerrala por completo y volvé a abrir. Las actualizaciones del Service Worker pueden requerir una segunda carga.</p></div></div></div></details>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-versions" class="view">
+        <header class="page-head versions-page-head"><div><span class="eyebrow">HISTORIAL DE LA APP</span><h1>Detalles de versión</h1><p>Las mejoras más recientes aparecen primero.</p></div><button id="versionsHomeBtn" class="btn btn-ghost" type="button">← Volver al inicio</button></header>
+        <div class="version-timeline">
+          <article class="panel version-card current"><header><span>VERSIÓN ACTUAL</span><strong>V.2.2.1</strong><time datetime="2026-08-25">25/08/2026</time></header><ul><li><b>Identidad de marca:</b> cada empresa puede cargar su propio patrón SVG, regular su intensidad y controlar cuántas veces se repite en la interfaz y en los documentos.</li></ul></article>
+          <article class="panel version-card"><header><strong>V.2.2.0</strong><time datetime="2026-08-24">24/08/2026</time></header><ul><li>Personalización profesional y separación estricta entre datos locales y datos de la nube.</li><li>Documentos A4 con controles de formalidad internos que no contaminan el PDF final.</li></ul></article>
+          <article class="panel version-card"><header><strong>V.2.0</strong><time datetime="2026-08-24">2026</time></header><ul><li>Gestión integral de órdenes, diagnóstico, presupuesto, reparación, cobros, técnicos y documentos profesionales.</li><li>Sincronización opcional, PWA/offline, PDF A4 y plantillas técnicas reutilizables.</li></ul></article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <datalist id="clientNames"></datalist><datalist id="brandList"></datalist><datalist id="modelList"></datalist>
+  <div id="previewModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="previewTitle"><div class="modal-backdrop" data-close-preview></div><div class="modal-card"><header class="modal-head"><div><span class="eyebrow">DOCUMENTO</span><h2 id="previewTitle">Vista previa</h2></div><div class="modal-actions"><div class="preview-tabs"><button type="button" data-preview-template="classic">Presupuesto</button><button type="button" data-preview-template="workshop">Orden de servicio</button></div><div class="preview-zoom" role="group" aria-label="Zoom de la vista previa"><label for="previewZoomRange"><span>Zoom</span><input id="previewZoomRange" type="range" min="50" max="300" step="5" value="100" /></label><output id="previewZoomValue" aria-live="polite">100%</output><button class="preview-fit" type="button" data-preview-zoom="fit">Ajustar</button></div><button id="downloadPreviewPdfBtn" class="btn btn-download pdf-download-button" type="button">↓ Descargar</button><button id="printBudgetBtn" class="btn btn-primary" type="button">Imprimir</button><button class="icon-btn modal-close" type="button" data-close-preview aria-label="Cerrar">×</button></div></header><div class="preview-stage" id="previewStage"><div id="printArea" class="print-area"></div></div></div></div>
+  <dialog id="quickTemplateDialog" class="template-dialog" aria-labelledby="quickTemplateDialogTitle">
+    <form id="quickTemplateForm" method="dialog" class="template-dialog-card">
+      <header class="template-dialog-head"><div><span class="eyebrow">PLANTILLA RÁPIDA</span><h2 id="quickTemplateDialogTitle">Nueva plantilla</h2></div><button class="icon-btn" type="button" data-close-template aria-label="Cerrar">×</button></header>
+      <div class="template-dialog-body">
+        <input type="hidden" name="id" />
+        <div class="field-grid template-basic-grid">
+          <label class="field span-2"><span>Nombre de la plantilla</span><input class="input" name="label" maxlength="48" required placeholder="Ej. Cambio de pantalla" /></label>
+          <label class="field"><span>Ícono</span><input class="input" name="icon" maxlength="4" placeholder="⚡" /></label>
+          <label class="field"><span>Tipo de servicio</span><select class="input" name="serviceType"><option>Diagnóstico</option><option>Reparación</option><option>Mantenimiento</option><option>Software</option><option>Instalación / actualización</option><option>Recuperación de datos</option><option>Presupuesto</option><option>Otro</option></select></label>
+          <label class="field"><span>Prioridad</span><select class="input" name="priority"><option>Normal</option><option>Alta</option><option>Urgente</option></select></label>
+          <label class="field"><span>Tipo de equipo</span><select class="input" name="deviceType"><option value="">No modificar</option><option>Notebook</option><option>PC</option><option>All in One</option><option>Monitor</option><option>Otro</option></select></label>
+        </div>
+        <label class="field"><span>Falla informada por el cliente</span><input class="input" name="issue" placeholder="Descripción inicial que se cargará en la orden" /></label>
+        <div class="field-grid cols-2">
+          <label class="field"><span>Diagnóstico técnico</span><textarea class="input textarea" name="diagnosis" rows="5"></textarea></label>
+          <label class="field"><span>Trabajo / resolución propuesta</span><textarea class="input textarea" name="work" rows="5"></textarea></label>
+        </div>
+        <label class="field"><span>Resultado / conclusión</span><input class="input" name="result" /></label>
+        <label class="field"><span>Observaciones</span><textarea class="input textarea" name="notes" rows="3"></textarea></label>
+        <label class="field"><span>Ítems predeterminados</span><textarea class="input textarea template-items-input" name="itemsText" rows="5" placeholder="Un ítem por línea: Condición | Descripción | Precio&#10;Repuesto | SSD 500 GB | 0&#10;Mano de obra | Instalación y pruebas | 0"></textarea><small class="field-help">El precio es opcional y puede modificarse al aplicar la plantilla.</small></label>
+      </div>
+      <footer class="template-dialog-actions"><button class="btn btn-ghost" type="button" data-close-template>Cancelar</button><button id="saveQuickTemplateDialogBtn" class="btn btn-success" type="submit">Guardar plantilla</button></footer>
+    </form>
+  </dialog>
+  <dialog id="cloudAuthDialog" class="template-dialog cloud-dialog" aria-labelledby="cloudAuthDialogTitle">
+    <form id="cloudAuthForm" method="dialog" class="template-dialog-card">
+      <header class="template-dialog-head"><div><span class="eyebrow">ALMACENAMIENTO ONLINE</span><h2 id="cloudAuthDialogTitle">Cuenta del taller</h2></div><button class="icon-btn" type="button" data-close-cloud aria-label="Cerrar">×</button></header>
+      <div class="template-dialog-body cloud-dialog-body">
+        <div class="cloud-dialog-intro"><span>☁</span><div><strong>Espacio cloud separado por cuenta</strong><p>Las órdenes cloud no se mezclan con las órdenes locales. Al cerrar sesión, toda la información descargada de esta cuenta se elimina del dispositivo.</p></div></div>
+        <label class="field"><span>Correo electrónico</span><input class="input" name="email" type="email" autocomplete="email" required placeholder="tu@email.com" /></label>
+        <label class="field"><span>Contraseña</span><input class="input" name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres" /></label>
+        <p id="cloudAuthMessage" class="cloud-auth-message" role="status"></p>
+      </div>
+      <footer class="template-dialog-actions cloud-dialog-actions"><button class="btn btn-ghost" type="button" data-close-cloud>Cancelar</button><button id="cloudSignUpBtn" class="btn btn-ghost" type="button">Crear cuenta</button><button id="cloudSignInBtn" class="btn btn-success" type="submit">Ingresar</button></footer>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./brand-pattern-v221.js"></script>
+</body>
+</html>

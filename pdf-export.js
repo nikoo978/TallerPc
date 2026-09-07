@@ -102,9 +102,7 @@ async function createIsolatedRenderPage(html) {
     throw new Error('iOS no pudo crear el entorno aislado del PDF.');
   }
   frameDocument.open();
-  frameDocument.write(`<!doctype html><html><head><base href="${document.baseURI}"><meta charset="utf-8"><style>${css}
-${dynamicAppearanceCss}
-
+  frameDocument.write(`<!doctype html><html><head><base href="${document.baseURI}"><meta charset="utf-8"><style>${css}\n${dynamicAppearanceCss}\n
     html, body { width: ${A4.widthPx}px !important; height: ${A4.heightPx}px !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; background: #fff !important; color-scheme: light !important; }
     .pdf-export-page { width: 210mm !important; height: 297mm !important; min-height: 297mm !important; max-height: 297mm !important; margin: 0 !important; overflow: hidden !important; box-shadow: none !important; transform: none !important; zoom: 1 !important; }
     .pdf-export-page .classic-brand, .pdf-export-page .workshop-business { width: fit-content !important; max-width: 100% !important; justify-self: start !important; }
@@ -140,9 +138,7 @@ function createSvg(page, css, scale) {
   const wrapper = document.createElementNS(htmlNamespace, 'div');
   wrapper.setAttribute('class', 'pdf-export-root');
   const style = document.createElementNS(htmlNamespace, 'style');
-  style.textContent = `${css}
-${getDynamicAppearanceCss()}
-
+  style.textContent = `${css}\n${getDynamicAppearanceCss()}\n
     .pdf-export-root { width: ${A4.widthPx}px; height: ${A4.heightPx}px; margin: 0; overflow: hidden; background: #fff; }
     .pdf-export-page { width: 210mm !important; height: 297mm !important; min-height: 297mm !important; max-height: 297mm !important; margin: 0 !important; overflow: hidden !important; box-shadow: none !important; }
     .pdf-export-page .classic-brand,
@@ -180,6 +176,8 @@ async function loadSvgImage(svg) {
   const blobUrl = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml;charset=utf-8' }));
   const blobSource = { source: blobUrl, cleanup: () => URL.revokeObjectURL(blobUrl) };
   const dataSource = { source: encodedSource, cleanup: () => {} };
+  // El data URL conserva el SVG como recurso autocontenido y evita que ciertos
+  // navegadores consideren contaminado el canvas al dibujar un blob con HTML.
   const sources = [dataSource, blobSource];
   let lastError;
   for (const candidate of sources) {
