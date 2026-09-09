@@ -1,4 +1,10 @@
-# V.2.2.1 — 25/08/2026
+# V.2.2.2 — 09/09/2026
+
+- Actualización offline que conserva la copia anterior si falla un archivo necesario.
+- Las respuestas de error no reemplazan la aplicación guardada; sólo se administran cachés propias.
+- Cabeceras HTTP y exclusión de archivos de configuración en el contenedor.
+
+## V.2.2.1 — 25/08/2026
 
 - **Identidad de marca:** cada empresa puede cargar su propio patrón SVG, regular su intensidad y controlar cuántas veces se repite en la interfaz y en los documentos.
 
